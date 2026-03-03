@@ -63,7 +63,6 @@ def rank_base(d: pd.DataFrame) -> pd.DataFrame:
 
 
 def country_code_to_fr_name(code: str) -> str:
-    """Convertit un code alpha-2 en nom de pays en français."""
     c = str(code).strip().upper()
     try:
         loc = Locale.parse("fr")
@@ -79,16 +78,11 @@ def country_code_to_fr_name(code: str) -> str:
 
 
 def fr_name_to_country_code(name: str, name_to_code_map: dict[str, str]) -> str | None:
-    """Retrouve le code alpha-2 depuis un nom français."""
     return name_to_code_map.get(name)
 
 
 @st.cache_data(show_spinner=False)
 def build_country_options(pays_serie: tuple) -> tuple[list[str], dict[str, str]]:
-    """
-    Construit la liste unique de noms de pays en français
-    et le dictionnaire {nom_fr: code_alpha2} pour le filtrage.
-    """
     all_codes: set[str] = set()
     for val in pays_serie:
         codes = parse_simple_list(val)
@@ -185,7 +179,6 @@ def _search_rank(df: pd.DataFrame, typed: str) -> pd.Series:
 
 
 def render_pagination(current_page: int, max_pages: int, key_suffix: str) -> None:
-    """Affiche la barre de pagination avec boutons gauche/droite et info centrale."""
     is_first = current_page == 0
     is_last = current_page >= max_pages
 
@@ -268,22 +261,18 @@ def render_grid(d: pd.DataFrame, n_cols: int = 6) -> None:
         st.markdown('</div>', unsafe_allow_html=True)
 
 
-# ── Chargement ────────────────────────────────────────────────────────────────
 df_ranked = prepare_df(str(CSV_PATH))
 
-# ── Filtres sidebar ───────────────────────────────────────────────────────────
 st.sidebar.header("Filtres")
 
-# Genres : liste construite une seule fois grâce au cache
 all_genres = get_all_genres(str(CSV_PATH))
 
-genre_choice = st.sidebar.multiselect(          # ← était manquant !
+genre_choice = st.sidebar.multiselect(        
     "Genre", options=all_genres, default=[],
     help="Un film est gardé s'il contient au moins un des genres sélectionnés.",
     placeholder="Choisissez un ou plusieurs genres",
 )
 
-# Pays
 country_names_sorted, name_to_code_map = build_country_options(
     tuple(df_ranked["Pays_origine"].tolist())
 )
@@ -314,9 +303,6 @@ if st.sidebar.button("Réinitialiser les filtres"):
 mask = pd.Series(True, index=df_ranked.index)
 
 if genre_choice:
-    # Les genres sélectionnés sont déjà en français (ex: "Action") ;
-    # on les normalise pour comparer avec _genre_list (stocké en anglais normalisé).
-    # On traduit donc dans les deux sens via translate_genre_to_fr.
     chosen_n = {normalize_txt(g, collapse_spaces=True) for g in genre_choice}
     mask &= df_ranked["_genre_list"].apply(
         lambda lst: any(
@@ -395,15 +381,12 @@ start = st.session_state.cat_page * PAGE_SIZE
 end   = min(start + PAGE_SIZE, total)
 page_df = filtered.iloc[start:end]
 
-# Barre de pagination — haut
 render_pagination(st.session_state.cat_page, max_pages, key_suffix="top")
 
 st.divider()
 
-# Grille de films
 render_grid(page_df, n_cols=6)
 
 st.divider()
 
-# Barre de pagination — bas
 render_pagination(st.session_state.cat_page, max_pages, key_suffix="bottom")

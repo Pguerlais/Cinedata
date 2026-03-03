@@ -20,9 +20,7 @@ st.set_page_config(
 load_css()
 render_sidebar()
 
-# ─────────────────────────────────────────────
-# HERO
-# ─────────────────────────────────────────────
+
 st.markdown(
     """
 <div style="text-align:center; margin: 0.2rem 0 1.5rem 0;">
@@ -103,9 +101,7 @@ st.markdown(
 
 st.divider()
 
-# ─────────────────────────────────────────────
-# NAVIGATION — option_menu (remplace st.tabs)
-# ─────────────────────────────────────────────
+
 section = option_menu(
     menu_title=None,
     options=["Notre Projet", "La Creuse", "TetraData"],
@@ -130,9 +126,6 @@ section = option_menu(
     },
 )
 
-# ─────────────────────────────────────────────
-# CONTENU PAR SECTION
-# ─────────────────────────────────────────────
 
 if section == "Notre Projet":
 
@@ -143,7 +136,6 @@ if section == "Notre Projet":
     )
     st.header("Le projet & l'organisation")
 
-    # CSS flux (déplacé ici, injecté une seule fois au rendu de cette section)
     st.markdown(
         """
 <style>
@@ -301,14 +293,12 @@ if section == "Notre Projet":
 
 
 elif section == "La Creuse":
-    # ── Contenu La Creuse à compléter ──
     st.header("La Creuse")
     st.image("assets/cartecreuse.jpg", use_container_width=True)
 
 
 elif section == "TetraData":
 
-    # ── CSS de l'onglet TetraData ──────────────────────────────────────────
     st.markdown("""
 <style>
 /* HERO BANNER */
@@ -513,7 +503,6 @@ elif section == "TetraData":
 </style>
 """, unsafe_allow_html=True)
 
-    # ── HERO ──────────────────────────────────────────────────────────────
     st.markdown("""
 <div class="td-hero">
   <div class="td-hero-logo">
@@ -529,12 +518,10 @@ elif section == "TetraData":
   </div>
 </div>
 """, unsafe_allow_html=True)
-    # Logo chargé via st.image pour éviter les problèmes de chemin
     col_logo, col_spacer = st.columns([1, 5])
     with col_logo:
         st.image("assets/logo_blanc_DT.png", width=160)
 
-    # ── STATS ──────────────────────────────────────────────────────────────
     st.markdown("""
 <div class="td-stats">
   <div class="td-stat">
@@ -556,12 +543,10 @@ elif section == "TetraData":
 </div>
 """, unsafe_allow_html=True)
 
-    # ── COLONNES PRINCIPALES ──────────────────────────────────────────────
     col_left, col_right = st.columns([1.1, 1], gap="large")
 
     with col_left:
 
-        # ÉQUIPE
         st.markdown("""
 <div class="td-card">
   <div class="td-card-title">L'équipe</div>
@@ -595,7 +580,6 @@ elif section == "TetraData":
 """, unsafe_allow_html=True)
         st.image("assets/img1.jpg", use_container_width=True)
 
-        # MÉTHODE AGILE
         st.markdown("""
 <div class="td-card">
   <div class="td-card-title">Notre méthode — Agile Scrum</div>
@@ -635,7 +619,6 @@ elif section == "TetraData":
 
     with col_right:
 
-        # CLIENTS
         st.markdown("""
 <div class="td-card">
   <div class="td-card-title">Ils nous font confiance</div>
@@ -649,7 +632,6 @@ elif section == "TetraData":
         st.image("assets/img3.jpg", use_container_width=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
-        # CERTIFICATIONS
         st.markdown("""
 <div class="td-card" style="margin-top:1.2rem;">
   <div class="td-card-title">Nos engagements & certifications</div>
@@ -665,7 +647,6 @@ elif section == "TetraData":
 </div>
 """, unsafe_allow_html=True)
 
-        # OUTILS
         st.markdown("""
 <div class="td-card" style="margin-top:1.2rem;">
   <div class="td-card-title">Notre stack technique</div>

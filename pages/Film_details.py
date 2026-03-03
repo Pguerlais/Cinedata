@@ -31,7 +31,7 @@ def load_df() -> pd.DataFrame:
     return read_csv_clean_columns(CSV_PATH)
 
 
-@st.cache_resource(show_spinner=True)
+@st.cache_resource(show_spinner=False)
 def load_artifacts() -> dict:
     df_ = load_df()
     return build_artifacts(df_)

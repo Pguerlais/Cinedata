@@ -235,9 +235,9 @@ if reco_df is not None:
     target_order = ["Très populaire", "Populaire", "Peu populaire"]
 
     cat_info = {
-        "Très populaire": ("tres", "🔥 Valeurs sûres",       "Des films très connus, faciles à aimer — parfaits pour une soirée 'valeur sûre'."),
-        "Populaire":      ("pop",  "⭐ Belles découvertes",   "Un bon équilibre : connus, mais avec souvent de belles surprises."),
-        "Peu populaire":  ("peu",  "💎 Pépites cachées",      "Des films moins exposés — idéal si tu veux découvrir des pépites."),
+        "Très populaire": ("tres", "🔥 Valeurs sûres",       "Des films très connus, faciles à aimer et parfaits pour une soirée réussie."),
+        "Populaire":      ("pop",  "⭐ Belles découvertes",   "Des films connus mais aussi de belles surprises !"),
+        "Peu populaire":  ("peu",  "💎 Pépites cachées",      "Des films moins exposés, idéal si tu veux découvrir un cinéma underground."),
     }
 
     for cat in target_order:
