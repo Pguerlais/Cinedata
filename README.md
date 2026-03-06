@@ -251,6 +251,7 @@ Projet réalisé dans le cadre d'une formation Data Analyst à la Wild Code Scho
 
 ---
 
-## 👨‍💻 Auteur
+## 👨‍💻 Constriibuteurs du projet
 
+Pierre - Data Analyst
 Anthony — Data Analyst
