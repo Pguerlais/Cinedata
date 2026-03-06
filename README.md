@@ -254,4 +254,5 @@ Projet réalisé dans le cadre d'une formation Data Analyst à la Wild Code Scho
 ## 👨‍💻 Auteurs
 
 Pierre - Data Analyst
+
 Anthony — Data Analyst
